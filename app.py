@@ -1,7 +1,7 @@
 print("Hello, welcome to the tip calculator")
 
-total_eaters = int(input("How many people are in your party? "))
-tax = float(input("What is the tax rate at the restaurant? "))
+start_msg = input("Type help for more info or type start to calculate ")
+
 divider = ('=========================================================')
 
 # total_eaters = int(total_eaters)
@@ -9,6 +9,9 @@ name_list = []
 
 
 def get_tips():
+    total_eaters = int(input("How many people are in your party? "))
+    tax = float(input("What is the tax rate at the restaurant? "))
+
     if total_eaters > 0:
         for person in range(total_eaters):
             print(f'{divider} \n')
@@ -29,7 +32,11 @@ def get_tips():
         subtotal += bill_amount
         each_tip = bill_amount * (tip_perc / 100)
         total_tips += each_tip
+        each_tax_total = bill_amount * (tax / 100)
+        full_bill = bill_amount + each_tax_total + each_tip
         print(f'\n {person_name} has to tip ${each_tip:.2f}')
+        print(
+            f"\n {person_name}'s total including tax and tip is ${full_bill:.2f}")
 
     tax_total = subtotal * (tax / 100)
     actual_total = tax_total + subtotal + total_tips
@@ -42,4 +49,20 @@ def get_tips():
     print(f'\n Your total bill including tax is ${actual_total:.2f}')
 
 
-get_tips()
+def help():
+    help_msg = input(
+        f'\n This tool will help you calculate the tips amounts for each diner in your party. \n Each diner can tip at a specific percentage for their meal. You will receive t Type start to begin. ')
+    if help_msg == 'start':
+        get_tips()
+    else:
+        print('Goodbye')
+        exit()
+
+
+if start_msg == 'help':
+    help()
+elif start_msg == 'start':
+    get_tips()
+else:
+    print('Goodbye')
+    exit()
