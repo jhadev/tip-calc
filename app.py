@@ -1,6 +1,6 @@
 print("Hello, welcome to the tip calculator")
 
-total_eaters = int(input("How many people in your party? "))
+total_eaters = int(input("How many people are in your party? "))
 tax = float(input("What is the tax rate at the restaurant? "))
 divider = ('=========================================================')
 
@@ -11,7 +11,7 @@ name_list = []
 def get_tips():
     if total_eaters > 0:
         for person in range(total_eaters):
-            print(divider)
+            print(f'{divider} \n')
             name = input(f'What is the name of person {person + 1}? ')
             total_spent = input(f"How much was {name}'s meal? ")
             tip_percentage = input(f'What % would {name} like to tip? ')
@@ -20,7 +20,7 @@ def get_tips():
     else:
         print('Nobody ate :(')
 
-    print(divider)
+    print(f'{divider} \n')
     subtotal = 0
     total_tips = 0
 
@@ -30,8 +30,15 @@ def get_tips():
         each_tip = bill_amount * (tip_perc / 100)
         total_tips += each_tip
         print(f'{person_name} has to tip ${each_tip:.2f}')
-    actual_total = (subtotal * (tax / 100)) + subtotal + total_tips
-    print(f'Your bill total is including tax is ${actual_total:.2f}')
+
+    tax_total = subtotal * (tax / 100)
+    actual_total = tax_total + subtotal + total_tips
+
+    print(f'{divider} \n')
+    print(f'The subtotal is ${subtotal:.2f}')
+    print(f'The tip total is ${total_tips:.2f}')
+    print(f'Total tax amount is ${tax_total:.2f}')
+    print(f'Your total bill including tax is ${actual_total:.2f}')
 
 
 get_tips()
